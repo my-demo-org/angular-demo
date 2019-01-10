@@ -1,4 +1,55 @@
-h1 {
-  font-size: 14px;
-  color: red;
+@import './animations/animations.component.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+  border-radius: 3px;
+  outline: none;
+}
+
+body,
+html {
+  color: #333;
+}
+
+.app-wrap {
+  button {
+    padding: 12px 10px;
+    margin: 10px 20px;
+    cursor: pointer;
+  }
+
+  .animation-btn {
+    border: 1px solid #22d7bb;
+    color: #22d7bb;
+
+    &:hover {
+      background: #22d7bb;
+      color: #fff;
+    }
+
+    &:disabled {
+      background: #f3f3f3;
+      cursor: not-allowed;
+      color: #888;
+      border-color: #f3f3f3;
+
+      &:hover {
+        background: #f3f3f3;
+        color: #888;
+      }
+    }
+  }
+
+  .reset-btn {
+    border: 1px solid #aaa;
+
+    &:hover {
+      border-color: #22d7bb;
+    }
+  }
+
+  .animation-wrap {
+    margin-left: 20px;
+  }
 }

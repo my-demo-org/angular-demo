@@ -1,3 +1,15 @@
-<h1>
-  Welcome to {{ title }}!
-</h1>
+<div class="app-wrap">
+  <button
+    [disabled]="disabled"
+    class="animation-btn"
+    type="button"
+    (click)="start()"
+  >
+    动画展示动画块
+  </button>
+  <button type="button" class="reset-btn" (click)="reset()">重置</button>
+
+  <div class="animation-wrap">
+    <app-animations *ngIf="showBlock"></app-animations>
+  </div>
+</div>
