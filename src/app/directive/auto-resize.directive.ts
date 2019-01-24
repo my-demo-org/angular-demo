@@ -17,6 +17,8 @@ export class AutoResizeDirective implements OnInit {
 
   adjust(): void {
     this.element.nativeElement.style.overflow = 'hidden';
+    this.element.nativeElement.style.resize = 'none';
+    this.element.nativeElement.style.overflowWrap = 'break-word';
     this.element.nativeElement.style.height = 'auto';
     this.element.nativeElement.style.height = this.element.nativeElement.scrollHeight + 'px';
   }
