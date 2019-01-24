@@ -10,6 +10,8 @@ export class AppComponent implements OnInit {
 
   showBlock = false;
 
+  title: string;
+
   constructor() {}
 
   ngOnInit() {}
