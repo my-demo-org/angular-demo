@@ -6,23 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  disabled = false;
-
-  showBlock = false;
-
-  title: string;
-
   constructor() {}
 
   ngOnInit() {}
-
-  start() {
-    this.showBlock = true;
-    this.disabled = true;
-  }
-
-  reset() {
-    this.showBlock = false;
-    this.disabled = false;
-  }
 }

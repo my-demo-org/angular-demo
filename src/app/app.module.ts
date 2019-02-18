@@ -1,15 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AnimationsComponent } from './animations/animations.component';
+import { AnimationsComponent } from './demo/index';
 import { SHARED_DIRECTIVE } from './directive/index';
+import { SHARED_COMPONENT, SHARED_ENTRY_COMPONENT } from './shared';
+import { AppRoutingModule } from './app-routing.module';
+import { InitComponent } from './demo/init/init.component';
 
 @NgModule({
-  declarations: [AppComponent, AnimationsComponent, ...SHARED_DIRECTIVE],
-  imports: [BrowserModule, BrowserAnimationsModule],
+  declarations: [
+    AppComponent,
+    AnimationsComponent,
+    ...SHARED_DIRECTIVE,
+    ...SHARED_COMPONENT,
+    ...SHARED_ENTRY_COMPONENT,
+    InitComponent
+  ],
+  imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent]
 })
