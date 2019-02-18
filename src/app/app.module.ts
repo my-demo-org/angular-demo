@@ -10,6 +10,7 @@ import { SHARED_DIRECTIVE } from './directive/index';
 import { SHARED_COMPONENT, SHARED_ENTRY_COMPONENT } from './shared';
 import { AppRoutingModule } from './app-routing.module';
 import { InitComponent } from './demo/init/init.component';
+import { AaaComponent } from './demo/aaa/aaa.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { InitComponent } from './demo/init/init.component';
     ...SHARED_DIRECTIVE,
     ...SHARED_COMPONENT,
     ...SHARED_ENTRY_COMPONENT,
-    InitComponent
+    InitComponent,
+    AaaComponent
   ],
   imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule],
   providers: [],
