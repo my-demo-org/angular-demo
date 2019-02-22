@@ -6,7 +6,7 @@ import { AnimationsComponent, InitComponent } from './demo/index';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/',
+    redirectTo: '/init',
     pathMatch: 'full'
   },
   {

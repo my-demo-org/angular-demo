@@ -1,16 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-
-import { AppComponent } from './app.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AnimationsComponent } from './demo/index';
 import { SHARED_DIRECTIVE } from './directive/index';
 import { SHARED_COMPONENT, SHARED_ENTRY_COMPONENT } from './shared';
 import { AppRoutingModule } from './app-routing.module';
+
+import { AppComponent } from './app.component';
 import { InitComponent } from './demo/init/init.component';
-import { AaaComponent } from './demo/aaa/aaa.component';
 
 @NgModule({
   declarations: [
@@ -19,11 +17,15 @@ import { AaaComponent } from './demo/aaa/aaa.component';
     ...SHARED_DIRECTIVE,
     ...SHARED_COMPONENT,
     ...SHARED_ENTRY_COMPONENT,
-    InitComponent,
-    AaaComponent
+    InitComponent
   ],
-  imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+  ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: []
 })
 export class AppModule {}
