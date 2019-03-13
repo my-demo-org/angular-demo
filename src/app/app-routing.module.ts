@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AnimationsComponent, InitComponent } from './demo/index';
+import { InitComponent } from './demo/index';
+import { AnimationsComponent } from './demo/animations';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/init',
+    redirectTo: 'init',
     pathMatch: 'full'
   },
   {

@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AnimationsComponent } from './demo/index';
+import { DEMO_COMPONENTS } from './demo/index';
 import { SHARED_DIRECTIVE } from './directive/index';
 import { SHARED_COMPONENT, SHARED_ENTRY_COMPONENT } from './shared';
 import { AppRoutingModule } from './app-routing.module';
@@ -13,7 +13,7 @@ import { InitComponent } from './demo/init/init.component';
 @NgModule({
   declarations: [
     AppComponent,
-    AnimationsComponent,
+    ...DEMO_COMPONENTS,
     ...SHARED_DIRECTIVE,
     ...SHARED_COMPONENT,
     ...SHARED_ENTRY_COMPONENT,
@@ -26,6 +26,6 @@ import { InitComponent } from './demo/init/init.component';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  exports: []
+  exports: [...DEMO_COMPONENTS]
 })
 export class AppModule {}

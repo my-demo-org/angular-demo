@@ -37,3 +37,15 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+
+node_modules
+bower_components
+.DS_Store
+dist
+built
+.css
+.idea
+.history    
+.vscode/settings.json
+.vscode
