@@ -6,6 +6,7 @@ import { DEMO_COMPONENTS } from './demo/index';
 import { SHARED_DIRECTIVE } from './directive/index';
 import { SHARED_COMPONENT, SHARED_ENTRY_COMPONENT } from './shared';
 import { AppRoutingModule } from './app-routing.module';
+import { ScrollDispatchModule } from '@angular/cdk/scrolling';
 
 import { AppComponent } from './app.component';
 import { InitComponent } from './demo/init/init.component';
@@ -23,6 +24,7 @@ import { InitComponent } from './demo/init/init.component';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    ScrollDispatchModule
   ],
   providers: [],
   bootstrap: [AppComponent],

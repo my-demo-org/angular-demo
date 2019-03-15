@@ -12,20 +12,21 @@
       text-decoration: none;
     }
   }
-}
 
-textarea.cdk-textarea-autosize {
-  resize: none;
-}
+  .app-cdk-scrolling {
+    margin-top: 50px;
 
-// This class is temporarily applied to the textarea when it is being measured. It is immediately
-// removed when measuring is complete. We use `!important` rules here to make sure user-specified
-// rules do not interfere with the measurement.
-textarea.cdk-textarea-autosize-measuring {
-  height: auto !important;
-  overflow: hidden !important;
-  // Having 2px top and bottom padding seems to fix a bug where Chrome gets an incorrect
-  // measurement. We just have to account for it later and subtract it off the final result.
-  padding: 2px 0 !important;
-  box-sizing: content-box !important;
+    .scrolling-parent {
+      height: 400px;
+      width: 200px;
+      border: 1px solid black;
+      padding: 8px;
+      overflow-y: auto;
+
+      .scrolling-item {
+        height: 30px;
+      }
+    }
+
+  }
 }
