@@ -18,7 +18,7 @@ import { InitComponent } from './demo/init/init.component';
     ...SHARED_DIRECTIVE,
     ...SHARED_COMPONENT,
     ...SHARED_ENTRY_COMPONENT,
-    InitComponent
+    InitComponent,
   ],
   imports: [
     BrowserModule,
