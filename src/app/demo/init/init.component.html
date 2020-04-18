@@ -1,18 +1,24 @@
 <app-header></app-header>
 <div class="app-container">
-  <div class="demo-item">
-    <a href="/animation">
-      <span>animation</span>
-    </a>
-  </div>
-
-
+    <div class="demo-item">
+        <a href="/animation">
+            <span>animation</span>
+        </a>
+    </div>
 </div>
 
 <div class="app-cdk-scrolling">
-  <div cdkScrollable class="scrolling-parent">
-    <div class="scrolling-item" *ngFor="let item of options">
-      {{ item.text }}
+    <div cdkScrollable class="scrolling-parent">
+        <div class="scrolling-item" *ngFor="let item of options">
+            {{ item.text }}
+        </div>
     </div>
-  </div>
+</div>
+
+<div class="app-container">
+    <div class="demo-item">
+        <a href="/open-data">
+            <span>WWOpenData</span>
+        </a>
+    </div>
 </div>
