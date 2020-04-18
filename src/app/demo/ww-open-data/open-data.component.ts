@@ -98,7 +98,7 @@ export class WWOpenDataComponent implements OnInit {
         const container = document.getElementById('wwOpenData');
         const element = document.createElement('ww-open-data');
         element.setAttribute('type', 'userName');
-        element.setAttribute('openid', this.member.display_name);
+        element.setAttribute('openid', this.member.name);
         container.appendChild(element);
 
         (window as any).WWOpenData.bindAll(document.querySelectorAll('ww-open-data'));
