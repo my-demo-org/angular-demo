@@ -8,16 +8,16 @@ import { SHARED_DIRECTIVE } from './directive/index';
 import { SHARED_COMPONENT, SHARED_ENTRY_COMPONENT } from './shared';
 import { AppRoutingModule } from './app-routing.module';
 import { ScrollDispatchModule } from '@angular/cdk/scrolling';
-import { NgxTethysModule } from 'ngx-tethys';
 
 import { AppComponent } from './app.component';
 import { InitComponent } from './demo/init/init.component';
+import { ThyAvatarModule } from './shared/component/avatar';
 
 @NgModule({
     declarations: [AppComponent, ...DEMO_COMPONENTS, ...SHARED_DIRECTIVE, ...SHARED_COMPONENT, ...SHARED_ENTRY_COMPONENT, InitComponent],
-    imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule, ScrollDispatchModule, HttpClientModule, NgxTethysModule],
+    imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule, ScrollDispatchModule, HttpClientModule, ThyAvatarModule],
     providers: [],
     bootstrap: [AppComponent],
-    exports: [...DEMO_COMPONENTS, NgxTethysModule],
+    exports: [...DEMO_COMPONENTS, ThyAvatarModule],
 })
 export class AppModule {}
