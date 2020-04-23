@@ -11,14 +11,11 @@ export abstract class ThyAvatarService {
 
 @Injectable()
 export class ThyDefaultAvatarService extends ThyAvatarService {
-    constructor(private domSanitizer: DomSanitizer) {
-        super();
-    }
     avatarSrcTransform(src: string, size: number): string {
         return src;
     }
 
     avatarNameTransform(name: string): string | SafeHtml {
-        return this.domSanitizer.bypassSecurityTrustHtml(`<wx-open-data type="userName" openid="{{${name}}}"></wx-open-data>`);
+        return name;
     }
 }

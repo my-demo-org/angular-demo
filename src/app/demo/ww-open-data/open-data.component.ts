@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
+import { ThyAvatarService } from '../../shared/component/avatar';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-ww-open-data',
@@ -13,7 +15,7 @@ export class WWOpenDataComponent implements OnInit {
 
     _wx = (window as any).wx;
 
-    members = [
+    wx_members = [
         {
             avatar: 'http://wework.qpic.cn/bizmail/xMtdH5hJbk9IV1AiaFc49wko6Ko5q3pXt6zW3veyufKggs5Mxibh8VPQ/0',
             created_at: 1587198231,
@@ -57,28 +59,86 @@ export class WWOpenDataComponent implements OnInit {
         },
     ];
 
+    default_members = [
+        {
+            avatar: 'https://s3.cn-north-1.amazonaws.com.cn/lcavatar/9808e3fe-6582-4454-bd3c-67ee5acfad64_40x40.png',
+            desc: '',
+            display_name: '蔡美琴👑',
+            display_name_pinyin: 'cmq,caimeiqin',
+            email: 'caimeiqin@worktile.com',
+            mobile: '15727325189',
+            name: 'cmq',
+            preferences: { locale: 'zh-cn' },
+            role: 1,
+            short_code: 'yc046',
+            status: 1,
+            team: '567b66f417986913404da9ff',
+            uid: '9dbfd438aa1c42bfa3c34060506146e0',
+        },
+        {
+            avatar: 'https://s3.cn-north-1.amazonaws.com.cn/lcavatar/08445843-c109-4ad0-add3-354c09660192_40x40.png',
+            desc: '',
+            display_name: '赵力',
+            display_name_pinyin: 'zl,zhaoli',
+            email: 'zhaoli@worktile.com',
+            mobile: '18500136115',
+            name: 'zhaoli',
+            preferences: { locale: 'zh-cn' },
+            role: 1,
+            short_code: 'yc006',
+            status: 1,
+            team: '567b66f417986913404da9ff',
+            uid: '16a6e082593f4df495bf9f474345f294',
+        },
+    ];
+
+    value: string;
+
+    // 通过http://qywx-dev.worktile.live/api/linker/qywx/config?url=http://qywx.goldlion.info:8080/open-data获取data数据
     data = {
         config: {
             beta: true,
             debug: true,
             appId: 'ww7bd5c9c41119ca5d',
-            timestamp: 1587526809,
-            nonceStr: 'sDGvVZRzseFPYQBg',
-            signature: 'b4e8c215307bae7dda435964b8a373d78f0d8638',
+            timestamp: 1587627510,
+            nonceStr: 'OqSMalLxmYYrtKvP',
+            signature: 'aa07f7010a90a680419fd3b17f3b5cb537626e42',
         },
         agentConfig: {
             corpid: 'ww53c08376d19cd9b6',
             agentid: 1000060,
-            timestamp: 1587526809,
-            nonceStr: 'sDGvVZRzseFPYQBg',
-            signature: '24abb3741468eb8c54eb734b62d9a5f161d70dee',
+            timestamp: 1587627510,
+            nonceStr: 'OqSMalLxmYYrtKvP',
+            signature: '59fd35b4d84da8cc9f42e3af34acc3f61395b1d8',
         },
     };
 
-    constructor(private http: HttpClient) {}
+    isFromQywx: Boolean = true;
+
+    constructor(private http: HttpClient, private thyAvatarService: ThyAvatarService, private domSanitizer: DomSanitizer) {}
 
     ngOnInit() {
+        if (this.isFromQywx) {
+            this.resetWxInit();
+        }
+    }
+
+    resetWxInit() {
+        this.thyAvatarService.avatarNameTransform = (name: string) => {
+            return this.domSanitizer.bypassSecurityTrustHtml(`<ww-open-data type="userName" openid="${name}"></ww-open-data>`);
+        };
         this.getWxSign();
+    }
+
+    change() {
+        this.isFromQywx = !this.isFromQywx;
+        if (this.isFromQywx) {
+            this.resetWxInit();
+        } else {
+            this.thyAvatarService.avatarNameTransform = (name: string) => {
+                return name;
+            };
+        }
     }
 
     getWxSign() {
@@ -114,7 +174,7 @@ export class WWOpenDataComponent implements OnInit {
             success: (res: any) => {
                 // 回调
                 console.log(res);
-                // this.bindWWOpenData();
+                // (window as any).WWOpenData.bind(document.querySelector('ww-open-data'));
             },
             fail: (res: any) => {
                 console.log(res);

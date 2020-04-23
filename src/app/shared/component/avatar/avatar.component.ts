@@ -1,7 +1,8 @@
 import { Component, Input, Output, EventEmitter, ElementRef, HostBinding, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ThyAvatarService } from './avatar.service';
-import { UpdateHostClassService } from 'ngx-tethys';
+import { UpdateHostClassService, helpers } from 'ngx-tethys';
 import { inputValueToBoolean } from 'ngx-tethys/util/helpers';
+import { SafeHtml } from '@angular/platform-browser';
 
 const sizeArray = [22, 24, 30, 38, 48, 68, 110, 160];
 const sizeMap = {
@@ -27,6 +28,7 @@ export class ThyAvatarComponent implements OnInit {
 
     public avatarSrc: string;
     public avatarName?: string;
+    public customName?: SafeHtml;
 
     @HostBinding('class.thy-avatar') _isAvatar = true;
 
@@ -82,7 +84,12 @@ export class ThyAvatarComponent implements OnInit {
     }
 
     private _setAvatarName() {
-        this.avatarName = this._name;
+        const name = this.thyAvatarService.avatarNameTransform(this._name);
+        if (helpers.isString(name)) {
+            this.avatarName = this._name;
+        } else {
+            this.customName = name;
+        }
     }
 
     constructor(

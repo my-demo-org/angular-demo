@@ -1,5 +1,16 @@
-<ng-container *ngFor="let member of members">
-    <div class="d-flex align-items-center">
-        <thy-avatar [thyName]="member.name" [thyShowName]="false" [thySrc]="member.avatar" [thySize]="sm"></thy-avatar>
+<div class="mb-2">
+    <button class="btn btn-primary btn-square mr-2" (click)="change()">切换名称展示方式</button>
+    <span>{{ isFromQywx ? '企业微信' : '默认' }}</span>
+</div>
+
+<ng-container *ngIf="isFromQywx">
+    <div *ngFor="let member of wx_members">
+        <thy-avatar [thyName]="member.name" [thyShowName]="true" [thySrc]="member.avatar" [thySize]="sm"></thy-avatar>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="!isFromQywx">
+    <div *ngFor="let member of default_members">
+        <thy-avatar [thyName]="member.display_name" [thyShowName]="true" [thySrc]="member.avatar" [thySize]="sm"></thy-avatar>
     </div>
 </ng-container>
