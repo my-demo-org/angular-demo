@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
-import { ThyAvatarService } from '../../shared/component/avatar';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ThyAvatarService } from 'ngx-tethys/avatar';
 
 @Component({
     selector: 'app-ww-open-data',
@@ -124,7 +124,7 @@ export class WWOpenDataComponent implements OnInit {
     }
 
     resetWxInit() {
-        this.thyAvatarService.avatarNameTransform = (name: string) => {
+        this.thyAvatarService.nameTransform = (name: string) => {
             return this.domSanitizer.bypassSecurityTrustHtml(`<ww-open-data type="userName" openid="${name}"></ww-open-data>`);
         };
         this.getWxSign();
@@ -135,7 +135,7 @@ export class WWOpenDataComponent implements OnInit {
         if (this.isFromQywx) {
             this.resetWxInit();
         } else {
-            this.thyAvatarService.avatarNameTransform = (name: string) => {
+            this.thyAvatarService.nameTransform = (name: string) => {
                 return name;
             };
         }
