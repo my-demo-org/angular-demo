@@ -1,3 +1,20 @@
+.app-init {
+    height: inherit;
+}
+.layout-container {
+    display: flex;
+    padding-top: 10px;
+    height: inherit;
+    .nav {
+        width: 200px;
+        height: 100%;
+        border-right: 1px solid #eee;
+    }
+    .container {
+        flex: auto;
+    }
+}
+
 .app-container {
     padding: 20px;
     display: flex;

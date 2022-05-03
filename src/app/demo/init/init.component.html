@@ -1,24 +1,60 @@
 <app-header></app-header>
-<div class="app-container">
-    <div class="demo-item">
-        <a href="/animation">
-            <span>animation</span>
-        </a>
-    </div>
-</div>
 
-<div class="app-cdk-scrolling">
-    <div cdkScrollable class="scrolling-parent">
-        <div class="scrolling-item" *ngFor="let item of options">
-            {{ item.text }}
-        </div>
-    </div>
-</div>
+<div class="layout-container">
+    <thy-menu class="nav">
+        <thy-menu-group thyTitle="CDK" [thyExpand]="true" [thyShowAction]="true">
+            <a thyMenuItem [class.active]="key === 'cdk'" href="javascript:;" (click)="change('cdk')">
+                <span thyMenuItemIcon> </span>
+                <span thyMenuItemName> Overlay </span>
+            </a>
+        </thy-menu-group>
 
-<div class="app-container">
-    <div class="demo-item">
-        <a href="/open-data">
-            <span>WWOpenData</span>
-        </a>
+        <thy-menu-group thyTitle="其他" [thyExpand]="true" [thyShowAction]="true">
+            <a thyMenuItem [class.active]="key === 'animation'" href="javascript:;" (click)="change('animation')">
+                <span thyMenuItemIcon></span>
+                <span thyMenuItemName> animation </span>
+            </a>
+            <a thyMenuItem [class.active]="key === 'wwOpenData'" href="javascript:;" (click)="change('wwOpenData')">
+                <span thyMenuItemIcon></span>
+                <span thyMenuItemName> WWOpenData </span>
+            </a>
+            <a thyMenuItem [class.active]="key === 'scrolling'" href="javascript:;" (click)="change('scrolling')">
+                <span thyMenuItemIcon></span>
+                <span thyMenuItemName> scrolling </span>
+            </a>
+        </thy-menu-group>
+    </thy-menu>
+
+    <div class="container">
+        <ng-container *ngIf="key === 'overlay'">
+            <app-cdk-demo></app-cdk-demo>
+        </ng-container>
+        <ng-container *ngIf="key === 'animation'">
+            <div class="app-container">
+                <div class="demo-item">
+                    <a href="/animation">
+                        <span>animation</span>
+                    </a>
+                </div>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="key === 'wwOpenData'">
+            <div class="app-container">
+                <div class="demo-item">
+                    <a href="/open-data">
+                        <span>WWOpenData</span>
+                    </a>
+                </div>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="key === 'scrolling'">
+            <div class="app-cdk-scrolling">
+                <div cdkScrollable class="scrolling-parent">
+                    <div class="scrolling-item" *ngFor="let item of options">
+                        {{ item.text }}
+                    </div>
+                </div>
+            </div>
+        </ng-container>
     </div>
 </div>

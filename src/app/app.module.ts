@@ -13,10 +13,30 @@ import { InitComponent } from './demo/init/init.component';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { ThyAvatarModule } from 'ngx-tethys/avatar';
 import { thyAvatarProvider } from './shared/service/sky-thy-avatar.service';
+import { CDK_COMPONENTS } from './demo/cdk';
+import { ThyMenuModule } from 'ngx-tethys/menu';
+import { ThyIconModule } from 'ngx-tethys/icon';
 
 @NgModule({
-    declarations: [AppComponent, ...DEMO_COMPONENTS, ...SHARED_DIRECTIVE, ...SHARED_COMPONENT, ...SHARED_ENTRY_COMPONENT, InitComponent],
-    imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule, HttpClientModule, ThyAvatarModule, OverlayModule],
+    declarations: [
+        AppComponent,
+        ...DEMO_COMPONENTS,
+        ...SHARED_DIRECTIVE,
+        ...SHARED_COMPONENT,
+        ...SHARED_ENTRY_COMPONENT,
+        InitComponent,
+        CDK_COMPONENTS,
+    ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        HttpClientModule,
+        ThyAvatarModule,
+        OverlayModule,
+        ThyMenuModule,
+        ThyIconModule,
+    ],
     providers: [thyAvatarProvider],
     bootstrap: [AppComponent],
     exports: [...DEMO_COMPONENTS, ThyAvatarModule],
