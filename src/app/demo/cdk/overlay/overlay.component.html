@@ -1,13 +1,28 @@
+<!-- ---------------- example 1 --------------------- -->
+
 <!-- This button triggers the overlay and is it's origin -->
-<button (click)="isOpen = !isOpen" thyButton="primary" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
+<!-- <button (click)="isOpen = !isOpen" thyButton="primary" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
     {{ isOpen ? 'Close' : 'Open' }}
-</button>
+</button> -->
 
 <!-- This template displays the overlay content and is connected to the button -->
-<ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger" [cdkConnectedOverlayOpen]="isOpen">
+<!-- <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger" [cdkConnectedOverlayOpen]="isOpen">
     <ul class="example-list">
         <li>Item 1</li>
         <li>Item 2</li>
         <li>Item 3</li>
     </ul>
 </ng-template>
+
+<br />
+<br /> -->
+
+<!-- ---------------- example 2 --------------------- -->
+
+<br />
+<br />
+<br />
+<br />
+
+<!-- ComponentPortal显示在屏幕中间 -->
+<a href="javascript:;" (click)="createOverlay()">create overlay</a>

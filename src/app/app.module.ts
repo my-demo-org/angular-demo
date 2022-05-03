@@ -13,7 +13,7 @@ import { InitComponent } from './demo/init/init.component';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { ThyAvatarModule } from 'ngx-tethys/avatar';
 import { thyAvatarProvider } from './shared/service/sky-thy-avatar.service';
-import { CDK_COMPONENTS } from './demo/cdk';
+import { CDK_COMPONENTS, CDK_ENTRY_COMPONENTS } from './demo/cdk';
 import { ThyMenuModule } from 'ngx-tethys/menu';
 import { ThyIconModule } from 'ngx-tethys/icon';
 import { ThyButtonModule } from 'ngx-tethys/button';
@@ -28,8 +28,9 @@ import { ThyDropdownModule } from 'ngx-tethys/dropdown';
         ...SHARED_COMPONENT,
         ...SHARED_ENTRY_COMPONENT,
         InitComponent,
-        CDK_COMPONENTS,
+        ...CDK_COMPONENTS,
     ],
+    entryComponents: [...CDK_ENTRY_COMPONENTS],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
