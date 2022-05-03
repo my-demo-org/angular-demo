@@ -16,6 +16,9 @@ import { thyAvatarProvider } from './shared/service/sky-thy-avatar.service';
 import { CDK_COMPONENTS } from './demo/cdk';
 import { ThyMenuModule } from 'ngx-tethys/menu';
 import { ThyIconModule } from 'ngx-tethys/icon';
+import { ThyButtonModule } from 'ngx-tethys/button';
+import { ThySpaceModule } from 'ngx-tethys/space';
+import { ThyDropdownModule } from 'ngx-tethys/dropdown';
 
 @NgModule({
     declarations: [
@@ -36,6 +39,9 @@ import { ThyIconModule } from 'ngx-tethys/icon';
         OverlayModule,
         ThyMenuModule,
         ThyIconModule,
+        ThyButtonModule,
+        ThySpaceModule,
+        ThyDropdownModule,
     ],
     providers: [thyAvatarProvider],
     bootstrap: [AppComponent],

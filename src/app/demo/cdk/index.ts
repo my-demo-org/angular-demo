@@ -1,6 +1,6 @@
 import { AppCdkDemoComponent } from './index.component';
-import { OverlayComponent } from './overlay/overlay.component';
+import { CdkOverlayComponent } from './overlay/overlay.component';
 
-export const CDK_COMPONENTS = [AppCdkDemoComponent, OverlayComponent];
+export const CDK_COMPONENTS = [AppCdkDemoComponent, CdkOverlayComponent];
 
-export { AppCdkDemoComponent, OverlayComponent };
+export { AppCdkDemoComponent, CdkOverlayComponent };

@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { InitComponent, WWOpenDataComponent } from './demo/index';
 import { AnimationsComponent } from './demo/animations';
-import { OverlayComponent } from './demo/cdk/overlay/overlay.component';
+import { CdkOverlayComponent } from './demo/cdk/overlay/overlay.component';
 
 const routes: Routes = [
     {
@@ -25,7 +25,7 @@ const routes: Routes = [
     },
     {
         path: 'overlay',
-        component: OverlayComponent,
+        component: CdkOverlayComponent,
     },
 ];
 

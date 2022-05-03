@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-overlay',
-  templateUrl: './overlay.component.html',
-  styleUrls: ['./overlay.component.scss']
+    selector: 'cdk-overlay',
+    templateUrl: './overlay.component.html',
+    styleUrls: ['./overlay.component.scss'],
 })
-export class OverlayComponent implements OnInit {
+export class CdkOverlayComponent implements OnInit {
+    @HostBinding('class') hostClass = 'cdk-overlay-wrapper';
 
-  constructor() { }
+    isOpen = false;
 
-  ngOnInit(): void {
-  }
+    constructor() {}
 
+    ngOnInit(): void {}
 }
