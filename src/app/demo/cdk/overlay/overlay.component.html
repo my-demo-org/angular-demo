@@ -1,12 +1,12 @@
 <!-- ---------------- example 1 --------------------- -->
 
 <!-- This button triggers the overlay and is it's origin -->
-<!-- <button (click)="isOpen = !isOpen" thyButton="primary" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
+<button (click)="isOpen = !isOpen" thyButton="primary" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
     {{ isOpen ? 'Close' : 'Open' }}
-</button> -->
+</button>
 
 <!-- This template displays the overlay content and is connected to the button -->
-<!-- <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger" [cdkConnectedOverlayOpen]="isOpen">
+<ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger" [cdkConnectedOverlayOpen]="isOpen">
     <ul class="example-list">
         <li>Item 1</li>
         <li>Item 2</li>
@@ -15,14 +15,40 @@
 </ng-template>
 
 <br />
-<br /> -->
+<br />
 
 <!-- ---------------- example 2 --------------------- -->
 
 <br />
 <br />
+
+<a href="javascript:;" (click)="showOverlayGlobalPanelCenter()">页面中心显示</a>
+
 <br />
 <br />
 
-<!-- ComponentPortal显示在屏幕中间 -->
-<a href="javascript:;" (click)="createOverlay()">create overlay</a>
+<a href="javascript:;" (click)="showOverlayGlobalPanelPosition()">全局显示，显示位置自己控制</a>
+
+<br />
+<br />
+
+<!-- ---------------- example 3 --------------------- -->
+
+<!-- 鼠标移入显示ng-template的内容，移出的时候不显示 -->
+<span (mouseenter)="showOverlayPanelTemplate()" (mouseleave)="dismissOverlayPanelTemplate()">显示ng-template的内容</span>
+
+<!-- ng-template overlay 要显示的内容 -->
+<ng-template cdk-portal #overlayGlobalTemplate>
+    <p class="template-overlay-pane">ng-template 显示</p>
+</ng-template>
+
+<br />
+<br />
+
+<!-- ---------------- example 4 --------------------- -->
+<!-- overlay依赖某个视图(origin)显示ng-template的内容 -->
+
+<!-- 依附某个组件或者template显示，鼠标移入的时候显示，移出来的时候不显示 -->
+<button thyButton="primary" (mouseenter)="showOverlayPanelConnectComponent()" (mouseleave)="dismissOverlayPanelConnectComponent()">
+    overlay connect 组件显示
+</button>
