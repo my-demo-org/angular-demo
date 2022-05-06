@@ -19,6 +19,8 @@ import { ThyIconModule } from 'ngx-tethys/icon';
 import { ThyButtonModule } from 'ngx-tethys/button';
 import { ThySpaceModule } from 'ngx-tethys/space';
 import { ThyDropdownModule } from 'ngx-tethys/dropdown';
+import { PortalModule } from '@angular/cdk/portal';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @NgModule({
     declarations: [
@@ -38,6 +40,8 @@ import { ThyDropdownModule } from 'ngx-tethys/dropdown';
         HttpClientModule,
         ThyAvatarModule,
         OverlayModule,
+        PortalModule,
+        ScrollingModule,
         ThyMenuModule,
         ThyIconModule,
         ThyButtonModule,

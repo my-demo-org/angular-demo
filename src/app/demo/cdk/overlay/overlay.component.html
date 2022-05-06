@@ -38,7 +38,7 @@
 <span (mouseenter)="showOverlayPanelTemplate()" (mouseleave)="dismissOverlayPanelTemplate()">显示ng-template的内容</span>
 
 <!-- ng-template overlay 要显示的内容 -->
-<ng-template cdk-portal #overlayGlobalTemplate>
+<ng-template cdk-portal #overlayGlobalTemplate="cdkPortal">
     <p class="template-overlay-pane">ng-template 显示</p>
 </ng-template>
 
@@ -49,6 +49,11 @@
 <!-- overlay依赖某个视图(origin)显示ng-template的内容 -->
 
 <!-- 依附某个组件或者template显示，鼠标移入的时候显示，移出来的时候不显示 -->
-<button thyButton="primary" (mouseenter)="showOverlayPanelConnectComponent()" (mouseleave)="dismissOverlayPanelConnectComponent()">
+<button
+    thyButton="primary"
+    #connectComponentOrigin
+    (mouseenter)="showOverlayPanelConnectComponent()"
+    (mouseleave)="dismissOverlayPanelConnectComponent()"
+>
     overlay connect 组件显示
 </button>

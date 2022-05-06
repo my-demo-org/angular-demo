@@ -30,7 +30,7 @@ export class CdkOverlayComponent implements OnInit, OnDestroy {
 
     @ViewChild('overlayGlobalTemplate') templateGlobalPortals: TemplatePortal;
 
-    @ViewChild('connectComponentOrigin') _overlayConnectComponentOrigin: ElementRef;
+    @ViewChild('connectComponentOrigin', { static: true }) _overlayConnectComponentOrigin: ElementRef;
 
     constructor(private overlay: Overlay, private viewContainerRef: ViewContainerRef) {}
 
@@ -83,7 +83,6 @@ export class CdkOverlayComponent implements OnInit, OnDestroy {
 
     // --------- overlay 展示 ng-template 内容 -------
 
-    // TODO: 此示例报错，需要解决
     showOverlayPanelTemplate() {
         const config = new OverlayConfig();
         this.globalOverlayPosition = 90;
@@ -99,7 +98,9 @@ export class CdkOverlayComponent implements OnInit, OnDestroy {
     }
 
     // --------- overlay 依赖某个视图(origin)显示ng-template的内容 -------
-    // TODO: 此示例报错，需要解决
+
+    // TODO：鼠标移入会出现频繁闪动，使用mouseover和mouseleave导致的。
+
     showOverlayPanelConnectComponent() {
         const strategy = this.overlay
             .position()
@@ -109,6 +110,9 @@ export class CdkOverlayComponent implements OnInit, OnDestroy {
         strategy.withLockedPosition(true);
         const config = new OverlayConfig({ positionStrategy: strategy });
         config.scrollStrategy = this.overlay.scrollStrategies.reposition(); // 跟随滑动的策略
+        // config.hasBackdrop = true;
+        config.width = 200;
+        config.height = 300;
         this.overlayConnectRef = this.overlay.create(config);
         this.overlayConnectRef.attach(new ComponentPortal(OverlayPortalMenuComponent, this.viewContainerRef));
     }
