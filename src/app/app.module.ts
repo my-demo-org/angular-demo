@@ -32,7 +32,6 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
         InitComponent,
         ...CDK_COMPONENTS,
     ],
-    entryComponents: [...CDK_ENTRY_COMPONENTS],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
@@ -50,6 +49,6 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     ],
     providers: [thyAvatarProvider],
     bootstrap: [AppComponent],
-    exports: [...DEMO_COMPONENTS, ThyAvatarModule],
+    exports: [...DEMO_COMPONENTS, ThyAvatarModule]
 })
 export class AppModule {}
