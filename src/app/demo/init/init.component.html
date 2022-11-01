@@ -3,9 +3,13 @@
 <div class="layout-container">
     <thy-menu class="nav">
         <thy-menu-group thyTitle="CDK" [thyExpand]="true" [thyShowAction]="true">
-            <a thyMenuItem [class.active]="key === 'cdk'" href="javascript:;" (click)="change('cdk')">
+            <a thyMenuItem [class.active]="key === 'cdk-overlay'" href="javascript:;" (click)="change('cdk-overlay')">
                 <span thyMenuItemIcon> </span>
                 <span thyMenuItemName> Overlay </span>
+            </a>
+            <a thyMenuItem [class.active]="key === 'cdk-scrolling'" href="javascript:;" (click)="change('cdk-scrolling')">
+                <span thyMenuItemIcon> </span>
+                <span thyMenuItemName> Scrolling </span>
             </a>
         </thy-menu-group>
 
@@ -18,16 +22,12 @@
                 <span thyMenuItemIcon></span>
                 <span thyMenuItemName> WWOpenData </span>
             </a>
-            <a thyMenuItem [class.active]="key === 'scrolling'" href="javascript:;" (click)="change('scrolling')">
-                <span thyMenuItemIcon></span>
-                <span thyMenuItemName> scrolling </span>
-            </a>
         </thy-menu-group>
     </thy-menu>
 
     <div class="container">
-        <ng-container *ngIf="key === 'cdk'">
-            <app-cdk-demo></app-cdk-demo>
+        <ng-container *ngIf="key === 'cdk-overlay' || key === 'cdk-scrolling'">
+            <app-cdk-demo [key]="key"></app-cdk-demo>
         </ng-container>
         <ng-container *ngIf="key === 'animation'">
             <div class="app-container">
@@ -44,15 +44,6 @@
                     <a href="/open-data">
                         <span>WWOpenData</span>
                     </a>
-                </div>
-            </div>
-        </ng-container>
-        <ng-container *ngIf="key === 'scrolling'">
-            <div class="app-cdk-scrolling">
-                <div cdkScrollable class="scrolling-parent">
-                    <div class="scrolling-item" *ngFor="let item of options">
-                        {{ item.text }}
-                    </div>
                 </div>
             </div>
         </ng-container>

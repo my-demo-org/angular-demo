@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { InitComponent, WWOpenDataComponent } from './demo/index';
 import { AnimationsComponent } from './demo/animations';
 import { CdkOverlayComponent } from './demo/cdk/overlay/overlay.component';
+import { CdkScrollingComponent } from './demo/cdk/scrolling/scrolling.component';
 
 const routes: Routes = [
     {
@@ -26,6 +27,10 @@ const routes: Routes = [
     {
         path: 'overlay',
         component: CdkOverlayComponent,
+    },
+    {
+        path: 'scrolling',
+        component: CdkScrollingComponent,
     },
 ];
 

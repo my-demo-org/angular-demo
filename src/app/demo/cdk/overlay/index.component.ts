@@ -1,11 +1,9 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-    selector: 'app-cdk-demo',
+    selector: 'app-cdk-overlay-demo',
     templateUrl: 'index.component.html',
 })
-export class AppCdkDemoComponent {
-    @Input() key: string;
-
+export class AppCdkOverlayDemoComponent {
     constructor() {}
 }

@@ -1,3 +1,6 @@
-<thy-space>
-    <a *thySpaceItem thyButton="primary" href="/overlay">Overlay</a>
-</thy-space>
+<ng-container *ngIf="key === 'cdk-overlay'">
+    <app-cdk-overlay-demo></app-cdk-overlay-demo>
+</ng-container>
+<ng-container *ngIf="key === 'cdk-scrolling'">
+    <app-cdk-scrolling-demo></app-cdk-scrolling-demo>
+</ng-container>

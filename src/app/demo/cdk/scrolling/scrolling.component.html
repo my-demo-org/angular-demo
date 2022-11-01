@@ -1,0 +1,39 @@
+<section class="cdk-scrolling-demo">
+    <h6>一：example1:</h6>
+    <div class="cdk-scrolling-basic">
+        <div cdkScrollable class="scrolling-parent">
+            <div class="scrolling-item" *ngFor="let item of options">
+                {{ item.text }}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cdk-scrolling-demo">
+    <h6>二：虚拟滚动:</h6>
+    <div class="cdk-scrolling-basic cdk-scrolling-virtual">
+        <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
+            <div *cdkVirtualFor="let item of items" class="example-item">{{ item }}</div>
+        </cdk-virtual-scroll-viewport>
+    </div>
+
+    <div class="cdk-scrolling-basic cdk-scrolling-virtual">
+        <cdk-virtual-scroll-viewport [itemSize]="18 * 7" class="example-viewport">
+            <div *cdkVirtualFor="let item of items;
+                                 let index = index;
+                                 let count = count;
+                                 let first = first;
+                                 let last = last;
+                                 let even = even;
+                                 let odd = odd;" [class.example-alternate]="odd">
+              <div class="example-item-detail">Item: {{item}}</div>
+              <div class="example-item-detail">Index: {{index}}</div>
+              <div class="example-item-detail">Count: {{count}}</div>
+              <div class="example-item-detail">First: {{first ? 'Yes' : 'No'}}</div>
+              <div class="example-item-detail">Last: {{last ? 'Yes' : 'No'}}</div>
+              <div class="example-item-detail">Even: {{even ? 'Yes' : 'No'}}</div>
+              <div class="example-item-detail">Odd: {{odd ? 'Yes' : 'No'}}</div>
+            </div>
+          </cdk-virtual-scroll-viewport>
+    </div>
+</section>

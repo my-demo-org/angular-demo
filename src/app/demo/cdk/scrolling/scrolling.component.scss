@@ -1,0 +1,43 @@
+.cdk-scrolling-demo {
+    padding: 30px;
+    .cdk-scrolling-basic {
+        margin: {
+            top: 10px;
+            left: 25px;
+        }
+
+        .scrolling-parent {
+            height: 300px;
+            width: 200px;
+            border: 1px solid black;
+            padding: 8px;
+            overflow-y: auto;
+
+            .scrolling-item {
+                height: 30px;
+            }
+        }
+
+        &.cdk-scrolling-virtual {
+            .example-viewport {
+                height: 300px;
+                width: 200px;
+                border: 1px solid black;
+            }
+
+            .example-item {
+                height: 50px;
+            }
+
+            .example-item-detail {
+                margin: 4px 0;
+                padding: 4px 0;
+                height: 18px;
+            }
+
+            .example-alternate {
+                background: rgba(127, 127, 127, 0.3);
+            }
+        }
+    }
+}
