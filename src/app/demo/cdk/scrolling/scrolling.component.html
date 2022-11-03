@@ -10,8 +10,14 @@
 </section>
 
 <section class="cdk-scrolling-demo">
+    <h6>一：example1:</h6>
+    <div id="scroll-container"></div>
+</section>
+
+<section class="cdk-scrolling-demo">
     <h6>二：虚拟滚动:</h6>
     <div class="cdk-scrolling-basic cdk-scrolling-virtual">
+        在视口中创建条目
         <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
             <div *cdkVirtualFor="let item of items" class="example-item">{{ item }}</div>
         </cdk-virtual-scroll-viewport>
@@ -19,21 +25,122 @@
 
     <div class="cdk-scrolling-basic cdk-scrolling-virtual">
         <cdk-virtual-scroll-viewport [itemSize]="18 * 7" class="example-viewport">
-            <div *cdkVirtualFor="let item of items;
-                                 let index = index;
-                                 let count = count;
-                                 let first = first;
-                                 let last = last;
-                                 let even = even;
-                                 let odd = odd;" [class.example-alternate]="odd">
-              <div class="example-item-detail">Item: {{item}}</div>
-              <div class="example-item-detail">Index: {{index}}</div>
-              <div class="example-item-detail">Count: {{count}}</div>
-              <div class="example-item-detail">First: {{first ? 'Yes' : 'No'}}</div>
-              <div class="example-item-detail">Last: {{last ? 'Yes' : 'No'}}</div>
-              <div class="example-item-detail">Even: {{even ? 'Yes' : 'No'}}</div>
-              <div class="example-item-detail">Odd: {{odd ? 'Yes' : 'No'}}</div>
+            <!-- *cdkVirtualFor 让模板中可以使用这些上下文变量： -->
+            <div
+                *cdkVirtualFor="
+                    let item of items;
+                    let index = index;
+                    let count = count;
+                    let first = first;
+                    let last = last;
+                    let even = even;
+                    let odd = odd
+                "
+                [class.example-alternate]="odd"
+            >
+                <div class="example-item-detail">Item: {{ item }}</div>
+                <div class="example-item-detail">Index: {{ index }}</div>
+                <div class="example-item-detail">Count: {{ count }}</div>
+                <div class="example-item-detail">First: {{ first ? 'Yes' : 'No' }}</div>
+                <div class="example-item-detail">Last: {{ last ? 'Yes' : 'No' }}</div>
+                <div class="example-item-detail">Even: {{ even ? 'Yes' : 'No' }}</div>
+                <div class="example-item-detail">Odd: {{ odd ? 'Yes' : 'No' }}</div>
             </div>
-          </cdk-virtual-scroll-viewport>
+        </cdk-virtual-scroll-viewport>
+    </div>
+
+    <div class="cdk-scrolling-basic cdk-scrolling-virtual">
+        视图回收
+        <!-- 为了提高渲染性能，*cdkVirtualFor 会缓存那些曾经创建过但不再需要的视图。
+            当要创建一个新视图时，会转而复用一个已缓存的视图。
+            可以通过 templateCacheSize 属性来调整视图缓存的大小。
+            把这个大小设置为 0 会禁用缓存。
+            如果你的模板在内存方面很昂贵，你可能会希望减小这个数字，以免在模板缓存上花费太多内存。 -->
+        <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
+            <div *cdkVirtualFor="let item of items; templateCacheSize: 0" class="example-item">{{ item }}</div>
+        </cdk-virtual-scroll-viewport>
+    </div>
+
+    <div class="cdk-scrolling-basic cdk-scrolling-virtual">
+        指定数据
+        <!--  *cdkVirtualFor 接受来自 Array、Observable<Array> 或 DataSource 的数据。
+            虚拟滚动的 DataSource 与表格和树组件所用的 DataSource 是同一个。
+            DataSource 只是一个抽象类，它有两个方法：connect 和 disconnect。
+            虚拟滚动视口将调用这个 connect 方法，以接收一个流，这个流会发出要渲染的数据数组。
+            当 viewport 被销毁时，视口会调用 disconnect，这可能是清理连接过程中注册进来的所有订阅的最佳时机。  -->
+
+        <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
+            <div *cdkVirtualFor="let item of ds" class="example-item">{{ item || 'Loading...' }}</div>
+        </cdk-virtual-scroll-viewport>
+    </div>
+
+    <div class="cdk-scrolling-basic cdk-scrolling-virtual">
+        滚动那些固定大小的条目
+        <!-- 当所有条目都是固定大小时，你可以使用 FixedSizeVirtualScrollStrategy。
+            可以用 itemSize 指令轻松地将它添加到视口中。
+            这种约束的优点是它可以提供更好的性能，因为在渲染条目时不需要进行测量。 -->
+        <cdk-virtual-scroll-viewport itemSize="50" minBufferPx="200" maxBufferPx="400" class="example-viewport">
+            <div *cdkVirtualFor="let item of items" class="example-item">{{ item }}</div>
+        </cdk-virtual-scroll-viewport>
+    </div>
+
+    <div class="cdk-scrolling-basic cdk-scrolling-virtual">
+        视口方向
+        <!-- 虚拟滚动视口默认为垂直方向，也可以设置为 orientation="horizontal"。
+            在改变方向时，要确保该条目是用 CSS 进行水平布局的。
+            要做到这一点，你可能希望把 .cdk-virtual-scroll-content-wrapper 类作为 CSS 的目标，它是包含待渲染内容的包装元素。 -->
+        <div class="cdk-virtual-scroll-data-source-example">
+            <cdk-virtual-scroll-viewport orientation="horizontal" itemSize="50" class="example-viewport">
+                <div *cdkVirtualFor="let item of items" class="example-item">{{ item }}</div>
+            </cdk-virtual-scroll-viewport>
+        </div>
+    </div>
+
+    <div class="cdk-scrolling-basic cdk-scrolling-virtual">
+        那些对父标签有特定要求的元素
+        <!-- 某些 HTML 元素（如 <tr> 和 <li>）对它们所在的父元素种类有一些限制。
+            要想对这些类型的元素进行虚拟滚动操作，就要把它们放在合适的父元素中，然后把它们共同包装在 cdk-virtual-scroll-viewport 中。
+            注意，父组件中不要引入额外的空白区（比如通过 margin 或 padding），因为这样会干扰滚动。 -->
+        <cdk-virtual-scroll-viewport class="example-viewport" itemSize="60">
+            <dl class="example-dl">
+                <ng-container *cdkVirtualFor="let state of states">
+                    <dt class="example-dt">{{ state.name }}</dt>
+                    <dd class="example-dd">{{ state.capital }}</dd>
+                </ng-container>
+            </dl>
+        </cdk-virtual-scroll-viewport>
+    </div>
+
+    <div class="cdk-scrolling-basic cdk-scrolling-virtual">
+        滚动策略
+        <!-- 为了确定整个内容的大小以及它在任何时刻需要实际渲染的内容，视口依赖于所提供的一个 VirtualScrollStrategy。
+            提供它的最简单方式是在视口上使用 itemSize 指令（例如 <cdk-virtual-scroll-viewport itemSize="50">）。
+            但是，也可以通过创建一个实现 VirtualScrollStrategy 接口的类来提供自定义策略，并在包含此视口的组件上把它提供为 VIRTUAL_SCROLL_STRATEGY。 -->
+        <cdk-virtual-scroll-viewport class="example-viewport">
+            <div *cdkVirtualFor="let item of items" class="example-item">{{ item }}</div>
+        </cdk-virtual-scroll-viewport>
+    </div>
+
+    <div class="cdk-scrolling-basic cdk-scrolling-virtual">
+        仅追加模式
+        <!-- 渲染非平凡条目的虚拟滚动视口可能会发现，在用户滚动时简单地附加到列表而用不删除已渲染的视图会更高效。 
+            appendOnly 输入确保已渲染的视图在滚动出视图后仍保留在 DOM 中。 -->
+        <cdk-virtual-scroll-viewport appendOnly itemSize="50" class="example-viewport">
+            <div *cdkVirtualFor="let item of items" class="example-item">{{ item }}</div>
+        </cdk-virtual-scroll-viewport>
+    </div>
+
+    <div class="cdk-scrolling-basic cdk-scrolling-virtual">
+        单独的视口和滚动元素
+        <!-- 默认情况下，虚拟滚动视口本身就会充当滚动元素。
+            但是，在某些情况下，你可能希望让此视口滚动其父元素之一。
+            例如，如果你想要一些非虚拟化内容，用户可以在虚拟化内容之前或之后滚动浏览。
+            要将 cdk-vritual-scroll-viewport 配置为使用其父元素之一作为滚动元素，请把 cdkVirtualScrollingElement 应用于那个父元素。 -->
+
+        <!-- ---------------- ---------------- ---------------- ---------------- ---------------- ---------------- ---------------- ---------------- ---------------- -->
+
+        <!-- 另一个常见的场景是使用 window 本身作为滚动元素。
+            这通常是移动设备上更好的用户体验，因为它允许浏览器 Chrome 地址栏滚动出去。
+            要将 window 用作滚动元素，请将 scrollWindow 属性添加到 cdk-virtual-scroll-viewport 。 -->
     </div>
 </section>

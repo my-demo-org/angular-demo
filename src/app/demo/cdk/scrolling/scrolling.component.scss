@@ -38,6 +38,48 @@
             .example-alternate {
                 background: rgba(127, 127, 127, 0.3);
             }
+
+            .example-dt {
+                height: 30px;
+                font-weight: bold;
+            }
+
+            .example-dd {
+                height: 30px;
+                padding-left: 20px;
+            }
         }
     }
+}
+
+.cdk-virtual-scroll-data-source-example {
+    .cdk-virtual-scroll-orientation-horizontal .cdk-virtual-scroll-content-wrapper {
+        display: flex;
+        flex-direction: row;
+    }
+}
+
+.cdk-virtual-scroll-data-source-example .example-viewport {
+    height: 200px;
+    width: 200px;
+    border: 1px solid black;
+}
+
+.cdk-virtual-scroll-data-source-example .example-viewport .cdk-virtual-scroll-content-wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+.cdk-virtual-scroll-data-source-example .example-item {
+    width: 50px;
+    height: 100% !important;
+    writing-mode: vertical-lr;
+}
+
+#scroll-container {
+    width: 300px;
+    height: 200px;
+    padding: 20px;
+    overflow: auto;
+    border: 1px solid #eee;
 }
