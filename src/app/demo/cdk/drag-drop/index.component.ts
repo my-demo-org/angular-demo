@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-    selector: 'app-cdk-scrolling-demo',
+    selector: 'app-cdk-drag-drop-demo',
     templateUrl: './index.component.html'
 })
-export class AppCdkScrollingDemoComponent {
+export class AppCdkDragDropDemoComponent {
     constructor() {}
 }

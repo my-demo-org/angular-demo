@@ -1,3 +1,5 @@
+import { CdkDragAndDropComponent } from './drag-drop/drag-drop.component';
+import { AppCdkDragDropDemoComponent } from './drag-drop/index.component';
 import { AppCdkDemoComponent } from './index.component';
 import { AppCdkOverlayDemoComponent } from './overlay/index.component';
 import { CdkOverlayComponent } from './overlay/overlay.component';
@@ -12,4 +14,6 @@ export const CDK_COMPONENTS = [
     OverlayPortalMenuComponent,
     CdkScrollingComponent,
     AppCdkScrollingDemoComponent,
+    AppCdkDragDropDemoComponent,
+    CdkDragAndDropComponent
 ];

@@ -11,6 +11,10 @@
                 <span thyMenuItemIcon> </span>
                 <span thyMenuItemName> Scrolling </span>
             </a>
+            <a thyMenuItem [class.active]="key === 'cdk-drag-drop'" href="javascript:;" (click)="change('cdk-drag-drop')">
+                <span thyMenuItemIcon> </span>
+                <span thyMenuItemName> Drag and Drop </span>
+            </a>
         </thy-menu-group>
 
         <thy-menu-group thyTitle="其他" [thyExpand]="true" [thyShowAction]="true">
@@ -26,7 +30,7 @@
     </thy-menu>
 
     <div class="container">
-        <ng-container *ngIf="key === 'cdk-overlay' || key === 'cdk-scrolling'">
+        <ng-container *ngIf="key === 'cdk-overlay' || key === 'cdk-scrolling' || key === 'cdk-drag-drop'">
             <app-cdk-demo [key]="key"></app-cdk-demo>
         </ng-container>
         <ng-container *ngIf="key === 'animation'">
