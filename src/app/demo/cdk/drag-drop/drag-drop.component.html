@@ -1,0 +1,52 @@
+<section class="cdk-drag-drop-demo">
+    <h4>Drag&Drop enter predicate</h4>
+    <div class="demo-section-container">
+        <div class="example-container mr-9">
+            <p>Available lists</p>
+
+            <div
+                id="all"
+                cdkDropList
+                [cdkDropListData]="dragData"
+                cdkDropListConnectedTo="even"
+                class="example-list"
+                (cdkDropListDropped)="drop($event)"
+                [cdkDropListEnterPredicate]="noReturnPredicate"
+            >
+                <thy-list>
+                    <ng-container *ngFor="let item of dragData">
+                        <thy-list-item
+                            cdkDragPreviewClass="menu-item-cdk-preview"
+                            [cdkDragData]="item"
+                            cdkDrag
+                            (cdkDragStarted)="dragStarted($event)"
+                            (cdkDragEnded)="dragEnded($event)"
+                        >
+                            <span class="list-item-name">{{ item.name }}</span>
+                        </thy-list-item>
+                    </ng-container>
+                </thy-list>
+            </div>
+        </div>
+
+        <div class="example-container ml-8">
+            <p>Even lists</p>
+
+            <div
+                id="even"
+                cdkDropList
+                [cdkDropListData]="selectedData"
+                cdkDropListConnectedTo="all"
+                class="example-list"
+                (cdkDropListDropped)="drop($event)"
+                [cdkDropListEnterPredicate]="evenPredicateDim"
+            >
+                <ng-container *ngFor="let item of selectedData">
+                    <thy-list-item class="item" cdkDragPreviewClass="menu-item-cdk-preview" [cdkDragData]="item" cdkDrag>
+                        <span class="list-item-name">{{ item.name }}</span>
+                    </thy-list-item>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</section>

@@ -21,6 +21,8 @@ import { ThySpaceModule } from 'ngx-tethys/space';
 import { ThyDropdownModule } from 'ngx-tethys/dropdown';
 import { PortalModule } from '@angular/cdk/portal';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { ThyListModule } from 'ngx-tethys/list';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
     declarations: [
@@ -30,7 +32,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
         ...SHARED_COMPONENT,
         ...SHARED_ENTRY_COMPONENT,
         InitComponent,
-        ...CDK_COMPONENTS,
+        ...CDK_COMPONENTS
     ],
     imports: [
         BrowserModule,
@@ -41,11 +43,13 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
         OverlayModule,
         PortalModule,
         ScrollingModule,
+        DragDropModule,
         ThyMenuModule,
         ThyIconModule,
         ThyButtonModule,
         ThySpaceModule,
         ThyDropdownModule,
+        ThyListModule
     ],
     providers: [thyAvatarProvider],
     bootstrap: [AppComponent],

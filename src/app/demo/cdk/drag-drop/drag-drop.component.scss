@@ -1,0 +1,35 @@
+.cdk-drag-drop-demo {
+    width: 85vw;
+    margin: 20px auto;
+    border: 1px solid #eee;
+    padding: 20px;
+}
+
+.demo-section-container {
+    margin-top: 20px;
+    display: flex;
+}
+
+.example-container {
+    width: 300px;
+    max-width: 100%;
+}
+
+.example-list {
+    width: 100%;
+}
+
+.cdk-drop-list-dragging {
+    border-radius: 4px;
+    border: 1px dashed #ddd !important;
+}
+
+.cdk-drop-list-receiving-disabled {
+    border-radius: 4px;
+    border: 1px dashed #ff7575 !important;
+}
+
+.cdk-drop-list-receiving {
+    border-radius: 4px;
+    border: 1px dashed #6698ff !important;
+}
