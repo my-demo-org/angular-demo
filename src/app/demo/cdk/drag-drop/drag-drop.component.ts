@@ -7,14 +7,10 @@ import lodash from 'lodash';
 const _ = lodash;
 
 export interface ItemInfo {
-    metric_info?: any;
     key?: string;
     name?: string;
     type?: number;
-    chart_type?: number;
-    settings?: any;
-    field_func?: any;
-    config_keys: any[];
+    unit?: string;
 }
 @Component({
     selector: 'cdk-drag-drop',
@@ -26,7 +22,7 @@ export class CdkDragAndDropComponent implements OnInit, OnDestroy {
 
     dragData = dragMockData;
 
-    selectedData = [
+    selectedData: ItemInfo[] = [
         {
             name: '工作项数量',
             key: 'count',
@@ -41,19 +37,64 @@ export class CdkDragAndDropComponent implements OnInit, OnDestroy {
         }
     ];
 
+    anotherSelectedData: ItemInfo[] = [
+        {
+            name: '工作项按期完成率',
+            key: 'completed_percentage_on_time',
+            type: 991,
+            unit: '%'
+        }
+    ];
+
     constructor(private renderer: Renderer2) {}
 
-    drop(event: CdkDragDrop<ItemInfo[]>) {
+    drop(event: CdkDragDrop<ItemInfo[]>, id: string) {
         if (event.previousContainer === event.container) {
-            moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+            if (id === 'cols') {
+                moveItemInArray(this.selectedData, event.previousIndex, event.currentIndex);
+            }
+            if (id === 'rows') {
+                moveItemInArray(this.anotherSelectedData, event.previousIndex, event.currentIndex);
+            }
+            // moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
         } else {
-            transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
+            let item = event.previousContainer.data[event.previousIndex] as ItemInfo;
+            if (id === 'cols') {
+                if (
+                    _.some(this.selectedData, i => {
+                        return i.key === item.key;
+                    })
+                ) {
+                    return false;
+                }
+
+                if (this.selectedData.length < 3) {
+                    this.selectedData.push(item);
+                }
+            }
+            if (id === 'rows') {
+                if (
+                    _.some(this.anotherSelectedData, i => {
+                        return i.key === item.key;
+                    })
+                ) {
+                    return false;
+                }
+
+                this.anotherSelectedData.push(item);
+            }
+
+            // transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
         }
     }
 
     /** Predicate function that only allows even numbers to be dropped into a list. */
-    evenPredicateDim = (item: CdkDrag<ItemInfo>) => {
+    evenPredicate = (item: CdkDrag<ItemInfo>) => {
         return !_.find(this.selectedData, { key: item.data.key }) && this.selectedData.length < 3;
+    };
+
+    evenPredicateAnother = (item: CdkDrag<ItemInfo>) => {
+        return !_.find(this.anotherSelectedData, { key: item.data.key });
     };
 
     /** Predicate function that doesn't allow items to be dropped into a list. */
@@ -62,7 +103,7 @@ export class CdkDragAndDropComponent implements OnInit, OnDestroy {
     }
 
     dragStarted(event: CdkDragStart, key?: string) {
-        const id = 'even';
+        const id = 'cols';
         if (this.selectedData.length === 3) {
             const receivingDom = document.getElementById(id);
             this.renderer.addClass(receivingDom, 'cdk-drop-list-receiving-disabled');
@@ -70,7 +111,7 @@ export class CdkDragAndDropComponent implements OnInit, OnDestroy {
     }
 
     dragEnded(event: CdkDragEnd, key?: string) {
-        const id = 'even';
+        const id = 'cols';
         const receivingDom = document.getElementById(id);
         this.renderer.removeClass(receivingDom, 'cdk-drop-list-receiving-disabled');
     }
