@@ -19,6 +19,7 @@
                             cdkDragPreviewClass="menu-item-cdk-preview"
                             [cdkDragData]="item"
                             cdkDrag
+                            (cdkDragReleased)="dragReleased($event)"
                             (cdkDragStarted)="dragStarted($event)"
                             (cdkDragEnded)="dragEnded($event)"
                         >
@@ -72,5 +73,12 @@
                 </div>
             </div>
         </div>
+    </div>
+</section>
+
+<section class="cdk-drag-drop-demo">
+    <h4>Basic</h4>
+    <div class="example-box" cdkDrag>
+        Drag me around
     </div>
 </section>

@@ -88,6 +88,10 @@ export class CdkDragAndDropComponent implements OnInit, OnDestroy {
         }
     }
 
+    dragReleased(event) {
+        console.log(event);
+    }
+
     /** Predicate function that only allows even numbers to be dropped into a list. */
     evenPredicate = (item: CdkDrag<ItemInfo>) => {
         return !_.find(this.selectedData, { key: item.data.key }) && this.selectedData.length < 3;
