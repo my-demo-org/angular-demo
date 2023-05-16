@@ -5,12 +5,12 @@
 
 <ng-container *ngIf="isFromQywx">
     <div *ngFor="let member of wx_members">
-        <thy-avatar [thyName]="member.name" [thyShowName]="true" [thySrc]="member.avatar" [thySize]="sm"></thy-avatar>
+        <thy-avatar [thyName]="member.name" [thyShowName]="true" [thySrc]="member.avatar" [thySize]="'sm'"></thy-avatar>
     </div>
 </ng-container>
 
 <ng-container *ngIf="!isFromQywx">
     <div *ngFor="let member of default_members">
-        <thy-avatar [thyName]="member.display_name" [thyShowName]="true" [thySrc]="member.avatar" [thySize]="sm"></thy-avatar>
+        <thy-avatar [thyName]="member.display_name" [thyShowName]="true" [thySrc]="member.avatar" [thySize]="'sm'"></thy-avatar>
     </div>
 </ng-container>

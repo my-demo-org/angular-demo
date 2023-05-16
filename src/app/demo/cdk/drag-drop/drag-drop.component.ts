@@ -18,7 +18,7 @@ export interface ItemInfo {
     encapsulation: ViewEncapsulation.None
 })
 export class CdkDragAndDropComponent implements OnInit, OnDestroy {
-    private ngUnsubscribe$ = new Subject();
+    private ngUnsubscribe$ = new Subject<void>();
 
     dragData = dragMockData;
 

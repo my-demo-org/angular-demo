@@ -11,7 +11,7 @@ import { OverlayPortalMenuComponent } from './portal-menu.component';
     templateUrl: './overlay.component.html',
     styleUrls: ['./overlay.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    preserveWhitespaces: false,
+    preserveWhitespaces: false
 })
 export class CdkOverlayComponent implements OnInit, OnDestroy {
     @HostBinding('class') hostClass = 'cdk-overlay-wrapper';
@@ -22,7 +22,7 @@ export class CdkOverlayComponent implements OnInit, OnDestroy {
 
     overlayConnectRef: OverlayRef;
 
-    private ngUnsubscribe$ = new Subject();
+    private ngUnsubscribe$ = new Subject<void>();
 
     instance: OverlayPortalMenuComponent;
 
@@ -86,7 +86,11 @@ export class CdkOverlayComponent implements OnInit, OnDestroy {
     showOverlayPanelTemplate() {
         const config = new OverlayConfig();
         this.globalOverlayPosition = 90;
-        config.positionStrategy = this.overlay.position().global().centerHorizontally().top(`${this.globalOverlayPosition}px`);
+        config.positionStrategy = this.overlay
+            .position()
+            .global()
+            .centerHorizontally()
+            .top(`${this.globalOverlayPosition}px`);
         this.overlayTemplateRef = this.overlay.create(config);
         this.overlayTemplateRef.attach(this.templateGlobalPortals);
     }
